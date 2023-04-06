@@ -3,12 +3,12 @@ import java.util.List;
 
 public class Commands {
     private static List<String> commands = Arrays.asList(
-            "-Create Story",
-            "-Add Task",
-            "-Remove Task",
-            "-Print Story",
-            "-Print All Stories",
-            "-End");
+            "- Create Story",
+            "- Add Task",
+            "- Remove Task",
+            "- Print Story",
+            "- Print All Stories",
+            "- End");
 
     public static String showAllCommands() {
         StringBuilder sb = new StringBuilder();

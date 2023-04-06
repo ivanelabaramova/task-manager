@@ -33,7 +33,7 @@ public class Task {
         } else if (status.name().equals("closed")) {
             this.status = Status.CLOSED;
         } else {
-            throw new IllegalStateException("Status has to be active or closed");
+            System.err.println("Status has to be active or closed.\n");
         }
     }
 

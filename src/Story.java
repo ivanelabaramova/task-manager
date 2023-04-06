@@ -7,7 +7,7 @@ public class Story {
     private Status status;
     private Integer points;
     private List<Task> listOfTasks;
-    private final List<Integer> availablePoints = Arrays.asList(1, 2, 3, 5, 8, 13);
+    public static final List<Integer> availablePoints = Arrays.asList(1, 2, 3, 5, 8, 13);
 
     public Story(String name, String description, Integer points) {
         this.code = UUID.randomUUID();
@@ -38,15 +38,15 @@ public class Story {
         } else if (status.name().equals("closed")) {
             this.status = Status.CLOSED;
         } else {
-            throw new IllegalStateException("Status has to be active or closed");
+            System.err.println("Status has to be active or closed.\n");
         }
     }
 
     public void setPoints(Integer points) {
-        if (this.availablePoints.contains(points)) {
+        if (availablePoints.contains(points)) {
             this.points = points;
         } else {
-            throw new IllegalArgumentException("Points have to be a Fibonacci number between 1 and 13 (including).");
+            System.err.println("Points have to be a Fibonacci number between 1 and 13 (including).\n");
         }
     }
 
@@ -58,7 +58,7 @@ public class Story {
         if (!listOfTasks.contains(task)) {
             listOfTasks.add(task);
         } else {
-            throw new IllegalArgumentException("This task is already in the list.");
+            System.err.println("This task is already in the list.\n");
         }
     }
 
@@ -67,7 +67,8 @@ public class Story {
             listOfTasks.remove(task);
             return task;
         } else {
-            throw new IllegalArgumentException("This task does not exist in the list.");
+            System.err.println("This task does not exist in the list.\n");
+            return null;
         }
     }
 
@@ -81,10 +82,12 @@ public class Story {
         sb
                 .append("Story ")
                 .append(this.name)
-                .append(": ");
+                .append(": ")
+                .append(System.lineSeparator());
 
         for (Task task : listOfTasks) {
             sb
+                    .append("- ")
                     .append(task)
                     .append(System.lineSeparator());
         }

@@ -25,6 +25,7 @@ public class Main {
 
             switch (command) {
                 case "Create Story":
+                case "create story":
                     System.out.println("How would you like to name your story?");
                     String storyName = scanner.nextLine();
 
@@ -40,9 +41,12 @@ public class Main {
                         System.out.println("Give the story a description.");
                         String storyDescription = scanner.nextLine();
 
-                        System.out.println("Give the story points. The number should be a Fibonacci one in the range " +
-                                "1 to 13 (including).");
-                        int storyPoints = Integer.parseInt(scanner.nextLine());
+                        int storyPoints = 0;
+                        while(!Story.availablePoints.contains(storyPoints)) {
+                            System.out.println("Give the story points. The number should be a Fibonacci one in the range " +
+                                    "1 to 13 (including).");
+                            storyPoints = Integer.parseInt(scanner.nextLine());
+                        }
 
                         Story story = new Story(storyName, storyDescription, storyPoints);
                         listOfStories.add(story);
@@ -52,6 +56,7 @@ public class Main {
 
                     break;
                 case "Add Task":
+                case "add task":
                     System.out.println("What story would you like to add a task in?");
                     storyName = scanner.nextLine();
 
@@ -64,7 +69,7 @@ public class Main {
                     }
 
                     if (!isStoryFound) {
-                        throw new IllegalArgumentException("This story does not exist.\n");
+                        System.err.println("This story does not exist.\n");
                     } else {
                         System.out.println("How would you like to name the task?");
                         String taskName = scanner.nextLine();
@@ -79,6 +84,7 @@ public class Main {
                     }
                     break;
                 case "Remove Task":
+                case "remove task":
                     System.out.println("What story would you like to remove a task from?");
                     storyName = scanner.nextLine();
 
@@ -91,7 +97,7 @@ public class Main {
                     }
 
                     if (!isStoryFound) {
-                        throw new IllegalArgumentException("This story does not exist.\n");
+                        System.err.println("This story does not exist.\n");
                     } else {
                         System.out.println("Which task would you like to remove?");
                         String taskName = scanner.nextLine();
@@ -107,14 +113,15 @@ public class Main {
                         }
 
                         if (!isTaskFound) {
-                            throw new IllegalArgumentException("This task does not exist.\n");
+                            System.err.println("This task does not exist.\n");
                         } else {
                             chosenStory.removeTask(taskToBeRemoved);
-                            System.out.println(String.format("Task %s removed.\n", taskName));
+                            System.out.println(String.format("Task: %s removed.\n", taskName));
                         }
                     }
                     break;
                 case "Print Story":
+                case "print story":
                     System.out.println("Which story would you like to print?");
                     storyName = scanner.nextLine();
 
@@ -127,7 +134,7 @@ public class Main {
                     }
 
                     if (!isStoryFound) {
-                        throw new IllegalArgumentException("This story does not exist.\n");
+                        System.err.println("This story does not exist.\n");
                     } else {
                         if (chosenStory.getListOfTasks().isEmpty()) {
                             System.out.println("There are currently no tasks in this story.\n");
@@ -138,6 +145,7 @@ public class Main {
 
                     break;
                 case "Print All Stories":
+                case "print all stories":
                     if (listOfStories.isEmpty()) {
                         System.out.println("There are currently no stories to be displayed.\n");
                     } else {
@@ -145,7 +153,7 @@ public class Main {
                     }
                     break;
                 default:
-                    throw new IllegalArgumentException("Invalid command.\n");
+                    System.err.println("Invalid command.\n");
             }
 
             System.out.println("What would you like to do?");
