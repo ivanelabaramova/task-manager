@@ -39,6 +39,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("%s - Task %s: %s", this.code, this.name, this.description);
+        return this.name;
     }
 }

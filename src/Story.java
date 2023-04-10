@@ -73,7 +73,17 @@ public class Story {
     }
 
     public void printAllTasks() {
-        listOfTasks.forEach(System.out::println);
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            sb
+                    .append(i + 1)
+                    .append(". ")
+                    .append(listOfTasks.get(i))
+                    .append(System.lineSeparator());
+        }
+
+        System.out.println(sb);
     }
 
     @Override

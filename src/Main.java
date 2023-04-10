@@ -79,7 +79,7 @@ public class Main {
                         Task task = new Task(taskName, taskDescription);
                         chosenStory.addTask(task);
 
-                        System.out.println(String.format("Your task: %s is added in Story: %s.\n",
+                        System.out.println(String.format("Your Task: %s is added in Story: %s.\n",
                                 taskName, chosenStory.getName()));
                     }
                     break;
@@ -100,23 +100,14 @@ public class Main {
                         System.err.println("This story does not exist.\n");
                     } else {
                         System.out.println("Which task would you like to remove?");
-                        String taskName = scanner.nextLine();
-                        boolean isTaskFound = false;
-                        Task taskToBeRemoved = null;
+                        chosenStory.printAllTasks();
 
-                        for (Task task : chosenStory.getListOfTasks()) {
-                            if (task.getName().equals(taskName)) {
-                                isTaskFound = true;
-                                taskToBeRemoved = task;
-                                break;
-                            }
-                        }
-
-                        if (!isTaskFound) {
-                            System.err.println("This task does not exist.\n");
+                        int taskNumber = Integer.parseInt(scanner.nextLine());
+                        if (taskNumber > chosenStory.getListOfTasks().size()) {
+                            System.err.println("Invalid number.\n");
                         } else {
-                            chosenStory.removeTask(taskToBeRemoved);
-                            System.out.println(String.format("Task: %s removed.\n", taskName));
+                            Task removedTask = chosenStory.getListOfTasks().remove(taskNumber - 1);
+                            System.out.println(String.format("Task: %s removed.\n", removedTask.getName()));
                         }
                     }
                     break;
