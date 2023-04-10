@@ -18,14 +18,14 @@ public class Main {
         System.out.println(Commands.showAllCommands());
         command = scanner.nextLine();
 
-        while (!command.equals("End")) {
+        while (!command.equalsIgnoreCase("End")) {
             boolean isStoryFound = false;
             boolean storyExists = false;
             Story chosenStory = null;
 
             switch (command) {
-                case "Create Story":
-                case "create story":
+                //Create Story
+                case "cs":
                     System.out.println("How would you like to name your story?");
                     String storyName = scanner.nextLine();
 
@@ -55,8 +55,8 @@ public class Main {
                     }
 
                     break;
-                case "Add Task":
-                case "add task":
+                    //Add Task
+                case "at":
                     System.out.println("What story would you like to add a task in?");
                     storyName = scanner.nextLine();
 
@@ -79,13 +79,13 @@ public class Main {
                         Task task = new Task(taskName, taskDescription);
                         chosenStory.addTask(task);
 
-                        System.out.println(String.format("Your Task: %s is added in Story: %s.\n",
+                        System.out.println(String.format("Your Task: %s has been successfully added in Story: %s.\n",
                                 taskName, chosenStory.getName()));
                     }
                     break;
-                case "Remove Task":
-                case "remove task":
-                    System.out.println("What story would you like to remove a task from?");
+                    //Delete Task
+                case "dt":
+                    System.out.println("What story would you like to delete a task from?");
                     storyName = scanner.nextLine();
 
                     for (Story s : listOfStories) {
@@ -99,7 +99,7 @@ public class Main {
                     if (!isStoryFound) {
                         System.err.println("This story does not exist.\n");
                     } else {
-                        System.out.println("Which task would you like to remove?");
+                        System.out.println("Which task would you like to delete?");
                         chosenStory.printAllTasks();
 
                         int taskNumber = Integer.parseInt(scanner.nextLine());
@@ -107,12 +107,12 @@ public class Main {
                             System.err.println("Invalid number.\n");
                         } else {
                             Task removedTask = chosenStory.getListOfTasks().remove(taskNumber - 1);
-                            System.out.println(String.format("Task: %s removed.\n", removedTask.getName()));
+                            System.out.println(String.format("Task: %s has been successfully deleted.\n", removedTask.getName()));
                         }
                     }
                     break;
-                case "Print Story":
-                case "print story":
+                    //Print Story
+                case "ps":
                     System.out.println("Which story would you like to print?");
                     storyName = scanner.nextLine();
 
@@ -135,8 +135,8 @@ public class Main {
                     }
 
                     break;
-                case "Print All Stories":
-                case "print all stories":
+                    //Print All Stories
+                case "pas":
                     if (listOfStories.isEmpty()) {
                         System.out.println("There are currently no stories to be displayed.\n");
                     } else {

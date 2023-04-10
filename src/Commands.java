@@ -3,11 +3,11 @@ import java.util.List;
 
 public class Commands {
     private static List<String> commands = Arrays.asList(
-            "- Create Story",
-            "- Add Task",
-            "- Remove Task",
-            "- Print Story",
-            "- Print All Stories",
+            "- Create Story - cs",
+            "- Add Task - at",
+            "- Delete Task - dt",
+            "- Print Story - ps",
+            "- Print All Stories - pas",
             "- End");
 
     public static String showAllCommands() {
