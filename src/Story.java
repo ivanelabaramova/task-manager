@@ -86,22 +86,30 @@ public class Story {
         System.out.println(sb);
     }
 
-    @Override
-    public String toString() {
+    public void printAllActiveTasks() {
         StringBuilder sb = new StringBuilder();
-        sb
-                .append("Story ")
-                .append(this.name)
-                .append(": ")
-                .append(System.lineSeparator());
+        List<Task> activeTasks = new ArrayList<>();
 
         for (Task task : listOfTasks) {
+            if (task.getStatus().equals(Status.ACTIVE)) {
+                activeTasks.add(task);
+            }
+        }
+
+        for (int i = 0; i < activeTasks.size(); i++) {
+            Task currentTask = activeTasks.get(i);
             sb
-                    .append("- ")
-                    .append(task)
+                    .append(i + 1)
+                    .append(". ")
+                    .append(currentTask)
                     .append(System.lineSeparator());
         }
 
-        return sb.toString();
+        System.out.println(sb);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

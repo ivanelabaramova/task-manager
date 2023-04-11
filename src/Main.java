@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -22,6 +21,7 @@ public class Main {
             boolean isStoryFound = false;
             boolean storyExists = false;
             Story chosenStory = null;
+            int taskNumber = 0;
 
             switch (command) {
                 //Create Story
@@ -43,8 +43,8 @@ public class Main {
 
                         int storyPoints = 0;
                         while(!Story.availablePoints.contains(storyPoints)) {
-                            System.out.println("Give the story points. The number should be a Fibonacci one in the range " +
-                                    "1 to 13 (including).");
+                            System.out.println("Give the story points. The number should be a Fibonacci one " +
+                                    "in the range 1 to 13 (including).");
                             storyPoints = Integer.parseInt(scanner.nextLine());
                         }
 
@@ -102,12 +102,37 @@ public class Main {
                         System.out.println("Which task would you like to delete?");
                         chosenStory.printAllTasks();
 
-                        int taskNumber = Integer.parseInt(scanner.nextLine());
+                        taskNumber = Integer.parseInt(scanner.nextLine());
                         if (taskNumber > chosenStory.getListOfTasks().size()) {
                             System.err.println("Invalid number.\n");
                         } else {
                             Task removedTask = chosenStory.getListOfTasks().remove(taskNumber - 1);
-                            System.out.println(String.format("Task: %s has been successfully deleted.\n", removedTask.getName()));
+                            System.out.println(String.format("Task: %s has been successfully deleted.\n",
+                                    removedTask.getName()));
+                        }
+                    }
+                    break;
+                    //Complete Task
+                case "ct":
+                    System.out.println("Which story would you like to complete a task from?");
+                    taskManager.printAllStories();
+
+                    int storyNumber = Integer.parseInt(scanner.nextLine());
+                    if (storyNumber > taskManager.getListOfStories().size()) {
+                        System.err.println("Invalid number.\n");
+                    } else {
+                        chosenStory = taskManager.getListOfStories().get(storyNumber - 1);
+                        System.out.println("Which task would you like to complete?");
+                        chosenStory.printAllActiveTasks();
+
+                        taskNumber = Integer.parseInt(scanner.nextLine());
+                        if (taskNumber > chosenStory.getListOfTasks().size()) {
+                            System.err.println("Invalid number.\n");
+                        } else {
+                            Task taskToComplete = chosenStory.getListOfTasks().get(taskNumber - 1);
+                            taskToComplete.setStatus(Status.CLOSED);
+                            System.out.println(String.format("Task %s has been successfully completed.\n",
+                                    taskToComplete.getName()));
                         }
                     }
                     break;
