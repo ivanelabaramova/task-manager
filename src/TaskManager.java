@@ -9,6 +9,11 @@ public class TaskManager {
         this.listOfStories = listOfStories;
     }
 
+    public void setName(String name) {
+        Validations.isNullOrEmpty(name);
+        this.name = name;
+    }
+
     public List<Story> getListOfStories() {
         return this.listOfStories;
     }
