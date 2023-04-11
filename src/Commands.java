@@ -6,6 +6,7 @@ public class Commands {
             "- Create Story - cs",
             "- Add Task - at",
             "- Delete Task - dt",
+            "- Complete Task - ct",
             "- Print Story - ps",
             "- Print All Stories - pas",
             "- End");

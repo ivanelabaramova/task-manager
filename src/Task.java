@@ -27,10 +27,14 @@ public class Task {
         this.description = description;
     }
 
+    public Status getStatus() {
+        return this.status;
+    }
+
     public void setStatus(Status status) {
-        if (status.name().equals("active")) {
+        if (status.equals(Status.ACTIVE)) {
             this.status = Status.ACTIVE;
-        } else if (status.name().equals("closed")) {
+        } else if (status.equals(Status.CLOSED)) {
             this.status = Status.CLOSED;
         } else {
             System.err.println("Status has to be active or closed.\n");
