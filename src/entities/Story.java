@@ -1,3 +1,8 @@
+package entities;
+
+import enums.Status;
+import utils.Validations;
+
 import java.util.*;
 
 public class Story {
@@ -33,13 +38,7 @@ public class Story {
     }
 
     public void setStatus(Status status) {
-        if (status.name().equals("active")) {
-            this.status = Status.ACTIVE;
-        } else if (status.name().equals("closed")) {
-            this.status = Status.CLOSED;
-        } else {
-            System.err.println("Status has to be active or closed.\n");
-        }
+        this.status = status;
     }
 
     public void setPoints(Integer points) {

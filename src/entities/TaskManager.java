@@ -1,3 +1,7 @@
+package entities;
+
+import utils.Validations;
+
 import java.util.List;
 
 public class TaskManager {

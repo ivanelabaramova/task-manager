@@ -1,3 +1,9 @@
+package services;
+
+import entities.Story;
+import entities.Task;
+import entities.TaskManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -5,7 +11,6 @@ import java.util.Scanner;
 public class StoryService {
     private String storyName;
     private boolean storyExists;
-    private boolean isStoryFound;
     private Story chosenStory;
     private int taskIndex;
     private List<Story> listOfStories = new ArrayList<>();
@@ -46,15 +51,7 @@ public class StoryService {
         System.out.println("What story would you like to add a task in?");
         storyName = scanner.nextLine();
 
-        for (Story s : listOfStories) {
-            if (s.getName().equals(storyName)) {
-                isStoryFound = true;
-                chosenStory = s;
-                break;
-            }
-        }
-
-        if (!isStoryFound) {
+        if (!isStoryFound(storyName)) {
             System.err.println("This story does not exist.\n");
         } else {
             System.out.println("How would you like to name the task?");
@@ -74,15 +71,7 @@ public class StoryService {
         System.out.println("What story would you like to delete a task from?");
         storyName = scanner.nextLine();
 
-        for (Story s : listOfStories) {
-            if (s.getName().equals(storyName)) {
-                isStoryFound = true;
-                chosenStory = s;
-                break;
-            }
-        }
-
-        if (!isStoryFound) {
+        if (!isStoryFound(storyName)) {
             System.err.println("This story does not exist.\n");
         } else {
             System.out.println("Which task would you like to delete?");
@@ -114,15 +103,7 @@ public class StoryService {
         System.out.println("Which story would you like to print?");
         storyName = scanner.nextLine();
 
-        for (Story story1 : listOfStories) {
-            if (story1.getName().equals(storyName)) {
-                isStoryFound = true;
-                chosenStory = story1;
-                break;
-            }
-        }
-
-        if (!isStoryFound) {
+        if (!isStoryFound(storyName)) {
             System.err.println("This story does not exist.\n");
         } else {
             if (chosenStory.getListOfTasks().isEmpty()) {
@@ -139,6 +120,17 @@ public class StoryService {
         } else {
             taskManager.printAllStoriesWithTasks();
         }
+    }
+
+    private boolean isStoryFound(String storyName) {
+        for (Story story : listOfStories) {
+            if (story.getName().equals(storyName)) {
+                chosenStory = story;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void setTaskManagerName(String taskManagerName) {

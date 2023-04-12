@@ -1,3 +1,5 @@
+package utils;
+
 public class Validations {
 
     public static void isNullOrEmpty(String input) {

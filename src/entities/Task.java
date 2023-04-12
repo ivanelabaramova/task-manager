@@ -1,3 +1,8 @@
+package entities;
+
+import enums.Status;
+import utils.Validations;
+
 import java.util.UUID;
 
 public class Task {
@@ -32,13 +37,7 @@ public class Task {
     }
 
     public void setStatus(Status status) {
-        if (status.equals(Status.ACTIVE)) {
-            this.status = Status.ACTIVE;
-        } else if (status.equals(Status.CLOSED)) {
-            this.status = Status.CLOSED;
-        } else {
-            System.err.println("Status has to be active or closed.\n");
-        }
+        this.status = status;
     }
 
     @Override
