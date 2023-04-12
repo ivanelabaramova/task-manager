@@ -33,16 +33,17 @@ public class StoryService {
             System.out.println("Give the story a description.");
             String storyDescription = scanner.nextLine();
 
+            Story story = new Story(storyName, storyDescription, 1);
             int storyPoints = 0;
+
             while (!Story.availablePoints.contains(storyPoints)) {
                 System.out.println("Give the story points. The number should be a Fibonacci one " +
                         "in the range 1 to 13 (including).");
                 storyPoints = Integer.parseInt(scanner.nextLine());
+                story.setPoints(storyPoints);
             }
 
-            Story story = new Story(storyName, storyDescription, storyPoints);
             listOfStories.add(story);
-
             System.out.println(String.format("Your Story: %s is created.\n", storyName));
         }
     }

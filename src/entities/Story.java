@@ -41,11 +41,15 @@ public class Story {
         this.status = status;
     }
 
+    public Integer getPoints() {
+        return this.points;
+    }
+
     public void setPoints(Integer points) {
         if (availablePoints.contains(points)) {
             this.points = points;
         } else {
-            System.err.println("Points have to be a Fibonacci number between 1 and 13 (including).\n");
+            System.err.println("Invalid number.");
         }
     }
 
