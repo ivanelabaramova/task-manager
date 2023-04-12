@@ -106,14 +106,7 @@ public class StoryService {
             chosenStory.printAllActiveTasks();
 
             taskIndex = Integer.parseInt(scanner.nextLine());
-            if (taskIndex > chosenStory.getListOfTasks().size()) {
-                System.err.println("Invalid number.\n");
-            } else {
-                Task taskToComplete = chosenStory.getListOfTasks().get(taskIndex - 1);
-                taskToComplete.setStatus(Status.CLOSED);
-                System.out.println(String.format("Task %s has been successfully completed.\n",
-                        taskToComplete.getName()));
-            }
+            chosenStory.completeTask(taskIndex);
         }
     }
 

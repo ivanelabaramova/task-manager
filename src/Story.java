@@ -73,6 +73,16 @@ public class Story {
         }
     }
 
+    public void completeTask(int index) {
+        if (index > listOfTasks.size()) {
+            System.err.println("Invalid number.\n");
+        } else {
+            Task taskToComplete = listOfTasks.get(index - 1);
+            taskToComplete.setStatus(Status.CLOSED);
+            System.out.println(String.format("Task: %s has been successfully completed.\n", taskToComplete.getName()));
+        }
+    }
+
     public void printAllTasks() {
         StringBuilder sb = new StringBuilder();
 
