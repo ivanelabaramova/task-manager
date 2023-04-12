@@ -62,13 +62,14 @@ public class Story {
         }
     }
 
-    public Task removeTask(Task task) {
-        if (listOfTasks.contains(task)) {
-            listOfTasks.remove(task);
-            return task;
-        } else {
-            System.err.println("This task does not exist in the list.\n");
+    public Task deleteTask(int index) {
+        if (index > listOfTasks.size()) {
+            System.err.println("Invalid number.\n");;
             return null;
+        } else {
+            Task deletedTask = listOfTasks.remove(index - 1);
+            System.out.println(String.format("Task: %s has been successfully deleted.\n", deletedTask.getName()));
+            return deletedTask;
         }
     }
 

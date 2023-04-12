@@ -7,7 +7,7 @@ public class StoryService {
     private boolean storyExists;
     private boolean isStoryFound;
     private Story chosenStory;
-    private int taskNumber;
+    private int taskIndex;
     private List<Story> listOfStories = new ArrayList<>();
     private TaskManager taskManager = new TaskManager("", listOfStories);
     private Scanner scanner = new Scanner(System.in);
@@ -88,14 +88,8 @@ public class StoryService {
             System.out.println("Which task would you like to delete?");
             chosenStory.printAllTasks();
 
-            taskNumber = Integer.parseInt(scanner.nextLine());
-            if (taskNumber > chosenStory.getListOfTasks().size()) {
-                System.err.println("Invalid number.\n");
-            } else {
-                Task removedTask = chosenStory.getListOfTasks().remove(taskNumber - 1);
-                System.out.println(String.format("Task: %s has been successfully deleted.\n",
-                        removedTask.getName()));
-            }
+            taskIndex = Integer.parseInt(scanner.nextLine());
+            chosenStory.deleteTask(taskIndex);
         }
     }
 
@@ -111,11 +105,11 @@ public class StoryService {
             System.out.println("Which task would you like to complete?");
             chosenStory.printAllActiveTasks();
 
-            taskNumber = Integer.parseInt(scanner.nextLine());
-            if (taskNumber > chosenStory.getListOfTasks().size()) {
+            taskIndex = Integer.parseInt(scanner.nextLine());
+            if (taskIndex > chosenStory.getListOfTasks().size()) {
                 System.err.println("Invalid number.\n");
             } else {
-                Task taskToComplete = chosenStory.getListOfTasks().get(taskNumber - 1);
+                Task taskToComplete = chosenStory.getListOfTasks().get(taskIndex - 1);
                 taskToComplete.setStatus(Status.CLOSED);
                 System.out.println(String.format("Task %s has been successfully completed.\n",
                         taskToComplete.getName()));
@@ -150,7 +144,7 @@ public class StoryService {
         if (listOfStories.isEmpty()) {
             System.out.println("There are currently no stories to be displayed.\n");
         } else {
-            taskManager.printAllStories();
+            taskManager.printAllStoriesWithTasks();
         }
     }
 
